@@ -1,17 +1,13 @@
 extends Node3D
 
-# Preload the Block class
 const Block = preload("res://Block.gd")
 
-# Chunk constants
-const CHUNK_SIZE = 16
-const CHUNK_HEIGHT = 16
+const CHUNK_SIZE = 16*5
+const CHUNK_HEIGHT = 16*5
 
-# Block data storage
+
 var chunks = {}
 var chunk_meshes = {}
-
-# Materials and textures
 var block_material: StandardMaterial3D
 
 func _ready():
@@ -19,14 +15,12 @@ func _ready():
 	generate_chunk(Vector3i(0, 0, 0))
 
 func setup_materials():
-	# Create a basic material for blocks
 	block_material = StandardMaterial3D.new()
 	block_material.albedo_color = Color.WHITE
 	block_material.metallic = 0.0
 	block_material.roughness = 0.8
 	
-	# For now, we'll use simple colors instead of textures
-	# In a full implementation, you would load a texture atlas here
+	#TODO: load a texture atlas here, instead of simple colors
 
 func generate_chunk(chunk_pos: Vector3i):
 	var chunk_data = []
